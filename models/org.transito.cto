@@ -1,0 +1,71 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * Write your model definitions here
+ */
+
+namespace org.transito
+
+import org.vehiculo.*
+
+participant institucion identified by oficina {
+  o String oficina
+  o String numeroDocumento
+  o tipoDocumento documento default="nit"
+  o tipoParticipante tipo
+  o Direccion direccion
+}
+
+participant solicitante identified by solId {
+  o String solId
+  o tipoDocumento documento
+  o String nombre
+  o String apellido
+  o Direccion direccion
+}
+
+transaction transladoCuenta {
+  --> vehiculo placa
+  --> institucion nuevaInstitucion
+}
+
+event translado {
+  --> institucion origen
+  --> institucion destino
+  o estadoTramite estado 
+}
+
+concept Direccion{
+o String direccion
+o String telefono
+o String municipio
+o String Pais
+}
+
+enum tipoParticipante {
+o oficinaTransito
+o minTransporte
+}
+
+enum tipoDocumento {
+  o cedulaCiudadanaia
+  o nit
+}
+
+enum estadoTramite{
+  o aprovado
+  o registrado
+}
+

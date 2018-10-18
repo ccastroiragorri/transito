@@ -1,0 +1,44 @@
+
+
+namespace org.vehiculo
+
+import org.transito.*
+
+asset vehiculo identified by placa {
+  o String licenciaTransito
+  o String placa
+  o String marca
+  o String linea 
+  o String cilindraje
+  o String color
+  o tipoServicio servicio default="particular"
+  o claseVehiculo clase default="automovil"
+  o tipoCarroceria tipo default="sedan"
+  o tipoCombustible combustible default="gasolina"
+  --> solicitante propietario
+  --> institucion lugarRegistro
+}
+
+enum tipoServicio{
+  o particular
+  o publico
+  o oficial
+}
+
+enum tipoCombustible{
+  o gasolina
+  o disel
+  o gaz
+  o electrico
+}
+
+enum claseVehiculo{
+  o automovil
+  o camion
+  o moto
+}
+
+enum tipoCarroceria{
+  o sedan
+  o campero
+}
